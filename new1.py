@@ -23,6 +23,7 @@ conn = mysql.connector.connect(
 cursor = conn.cursor()
 
 table1="announced_lga_results"
+#supposed to use form value 'age' to execute
 cursor.execute("SELECT * from %s where lga_name=%s"%(table1,age))
 result1 = cursor.fetchall()
 
@@ -56,11 +57,13 @@ contents1 = '''<!DOCTYPE html>
 </html>
 '''%(p)
 
+#write contents1 in separate file
 f = open("webbrow.html", "w")
 f.write(contents1)
 f.close()
 
 cursor.execute("insert into student values (%s,%s,%s,%s)",(name, number, gender, age))
+#student table is already created in database
 con.commit()
 
 cur.close()
