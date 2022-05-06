@@ -1,5 +1,5 @@
 #!C:\Users\Me\AppData\Local\Programs\Python\Python310\python.exe
-#practice not related to work
+#practice supposed to work with new1
 import cgi
 form_inputs = cgi.FieldStorage()
 print("Content-Type: text/html\n")
