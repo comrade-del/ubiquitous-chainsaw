@@ -18,7 +18,7 @@ table1="announced_lga_results"
 cursor.execute("SELECT * from %s "%table)
 result1 = cursor.fetchall()
 
-p = []
+p = [] #to save sql table values in list
 
 tbl = "<thead><tr><th>Result_id</th><th>Polling_Unit_Uniqueid</th><th>Party_Abbreviation</th><th>Party_Score</th></tr><\t"
 p.append(tbl)
@@ -36,7 +36,7 @@ for row in result1:
 num=int(input("lga id: "))
 cursor.execute("SELECT * from %s where lga_name=%d"%(table1,num))
 result2 = cursor.fetchall()
-l=[]
+l=[] #same as list p, different table
 tbl2 = "<thead><tr><th>Result_id</th><th>LGA_Name</th><th>Party_Abbreviation</th><th>Party_Score</th></tr><\t"
 
 l.append(tbl2)
@@ -51,18 +51,18 @@ for row in result2:
     d = "<td>%s</td></tr>"%row[3]
     l.append(d)
 
-cursor.execute("SELECT SUM(party_score) FROM %s where lga_name=%d;"%(table1,num))
+cursor.execute("SELECT SUM(party_score) FROM %s where lga_name=%d;"%(table1,num)) #sum of select values in selected colulmn
 tota = cursor.fetchall()
 for i in tota:
     tot=i
-cursor.execute("SELECT lga_name from %s ORDER BY lga_name"%(table1))
+cursor.execute("SELECT lga_name from %s ORDER BY lga_name"%(table1)) #tried to make drop-down numbers in ascending order, not complerely successful, just followed database order
 result3 = cursor.fetchall()
 s=[]
 for row in result3:
     e = '<option value="%s">%s</option>'%(row[0],int(row[0]))
     s.append(e)
 
-res = []
+res = [] #remove repetitions in drop-down
 for i in s:
     if i not in res:
         res.append(i)    
@@ -80,7 +80,7 @@ contents1 = '''<!DOCTYPE html>
 </table>
 </body>
 </html>
-'''%(p)
+'''%(p) #first webpage, worked as intended 
 
 contents2 = '''<!DOCTYPE html>
 <html>
@@ -106,7 +106,7 @@ contents2 = '''<!DOCTYPE html>
 </table>
 </body>
 </html>
-'''%(res,l,tot)
+'''%(res,l,tot) #second webpage, worked as expected when ran as python script on jupyter, submitting form returns code
 
 f = open("webbrowser.html", "w")
 f.write(contents1)
