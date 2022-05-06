@@ -12,8 +12,9 @@ else:
 input_gender = '' if form_inputs.getvalue('gender') is None else form_inputs.getvalue('gender')
 
 input_grade = '' if form_inputs.getvalue('grade') is None else form_inputs.getvalue('grade')
+#used as 'age' in new1.py
 
-print('<form action="?" method="post">')
+print('<form action="?" method="post">') #'?' was changed back from new1.py because it returned a blank page
 print('<input type="text" placeholder="first name" id="name" value="'+ str(input_name) + '" name="name">')
 
 
@@ -50,6 +51,6 @@ print('</form>')
 print(str(input_name),'<br>')
 print(str(input_gender),'<br>')
 print(str(input_grade),'<br>')
-dig=int(form_inputs.getvalue('number'))
+dig=int(form_inputs.getvalue('number')) #used form input for normal arithmetic, worked
 #c=dig+2
 print('Your number + 2 = ',dig+2)
